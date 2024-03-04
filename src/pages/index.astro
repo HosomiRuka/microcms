@@ -1,0 +1,37 @@
+---
+//microCMS呼び出し
+import { getBlogs } from "../library/microcms";
+const response = await getBlogs({ fields: ["id", "title"] });
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<h1><a href="/">HOME</a></h1>
+			</nav>
+		</header>
+		<main>
+			<ul>
+			  {
+				response.contents.map((content: any) => (
+				  <li>
+					<a href={content.id}>{content.title}</a>
+				  </li>
+				))
+			  }
+			</ul>
+		  </main>
+		  <footer></footer>
+	</body>
+	<style>
+
+	</style>
+</html>
